@@ -1,6 +1,8 @@
 package tinycanvas
 
-import "syscall/js"
+import (
+	"syscall/js"
+)
 
 // ----------------------------------------------------------------------------
 type DOM struct {
@@ -13,11 +15,13 @@ type DOM struct {
 type TinyCanvas struct {
 	DOM
 
-	canvas    js.Value
-	ctx       js.Value
-	imageData js.Value
-	width     int
-	height    int
+	canvas        js.Value
+	ctx           js.Value
+	imageData     js.Value
+	imageBuffer   js.Value
+	wasmImageData []uint8
+	width         int
+	height        int
 }
 
 // ----------------------------------------------------------------------------
@@ -45,9 +49,58 @@ func (t *TinyCanvas) createHTMLCanvasElement() {
 	t.canvas.Set("height", t.height)
 	t.canvas.Set("width", t.width)
 	t.body.Call("appendChild", t.canvas)
+
+	t.refreshCanvasProperties()
+}
+
+// ----------------------------------------------------------------------------
+func (t *TinyCanvas) refreshCanvasProperties() {
+	t.ctx = t.canvas.Call("getContext", "2d")
+	t.imageData = t.ctx.Call("createImageData", t.width, t.height)
+	t.wasmImageData = make([]uint8, t.width*t.height*4) // width*height*pixel_size
+	t.imageBuffer = js.Global().Get("Uint8Array").New(len(t.wasmImageData))
+	t.wasmImageData = make([]uint8, t.width*t.height*4)
 }
 
 // ----------------------------------------------------------------------------
 func (t *TinyCanvas) GetDimensions() (int, int) {
 	return t.width, t.height
+}
+
+// ----------------------------------------------------------------------------
+func (t *TinyCanvas) ClearScreen(p Pixel) {
+	for x := range t.width {
+		for y := range t.height {
+			t.PutPixel(x, y, p)
+		}
+	}
+}
+
+// ----------------------------------------------------------------------------
+func (t *TinyCanvas) PutPixel(x, y int, p Pixel) {
+	offset := (x * 4) + (y * 4 * t.width)
+
+	t.wasmImageData[offset] = p.r
+	t.wasmImageData[offset+1] = p.g
+	t.wasmImageData[offset+2] = p.b
+	t.wasmImageData[offset+3] = p.a
+}
+
+// ----------------------------------------------------------------------------
+// Draws a rectangle of the specified width and height from the top left corner
+// in the given colour.
+func (t *TinyCanvas) Rectangle(xStart, yStart, width, height int, p Pixel) {
+	for x := range width {
+		for y := range height {
+			t.PutPixel(xStart+x, yStart+y, p)
+		}
+	}
+}
+
+// ----------------------------------------------------------------------------
+// Copies buffer to canvas
+func (t *TinyCanvas) Render() {
+	js.CopyBytesToJS(t.imageBuffer, t.wasmImageData)   // copy local buffer to JS buffer
+	t.imageData.Get("data").Call("set", t.imageBuffer) // copy that data to the canvas image data buffer
+	t.ctx.Call("putImageData", t.imageData, 0, 0)      // finally render the image to the canvas
 }

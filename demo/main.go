@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/ewaldhorn/tinycanvas/dom"
 	"github.com/ewaldhorn/tinycanvas/tinycanvas"
 )
@@ -18,7 +16,11 @@ func main() {
 
 	canvas := tinycanvas.NewTinyCanvas(640, 480)
 	width, height := canvas.GetDimensions()
-	dom.Log(fmt.Sprintf("Canvas has a height of %d and width of %d", width, height))
+
+	canvas.ClearScreen(*tinycanvas.NewPixel(10, 20, 180, 255))
+	canvas.Rectangle(10, 10, width-20, height-20, *tinycanvas.NewPixel(0, 255, 0, 255))
+
+	canvas.Render()
 
 	// prevent the app for closing - it stays running for the life of the webpage
 	ch := make(chan struct{})

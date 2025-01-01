@@ -29,6 +29,7 @@ tasks:
     desc: Builds the demo with TinyGo
     cmds:
       - tinygo build -o {{.OUT_DIR}}/{{.DEMO_TARGET_FILE}} -no-debug -target wasm ./{{.DEMO_DIR}}/.
+    silent: true
   updateWasmExec:
     desc: Updates the wasm_exec.js file
     cmds:
