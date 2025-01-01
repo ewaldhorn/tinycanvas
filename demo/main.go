@@ -5,6 +5,8 @@ import (
 	"github.com/ewaldhorn/tinycanvas/tinycanvas"
 )
 
+// ------------------------------------------ Externally provided by JavaScript
+
 //export bootstrap
 func bootstrap()
 
@@ -14,16 +16,7 @@ func main() {
 	dom.Hide("loading")
 	bootstrap()
 
-	canvas := tinycanvas.NewTinyCanvas(640, 480)
-	width, height := canvas.GetDimensions()
-
-	canvas.ClearScreen(*tinycanvas.NewPixel(10, 20, 180, 255))
-	canvas.Rectangle(10, 10, width-20, height-20, *tinycanvas.NewPixel(0, 255, 0, 255))
-	canvas.Rectangle(10, 10, 320, 240, *tinycanvas.NewWhitePixel())
-	drawWithPixels(canvas)
-	drawRandomRectangles(canvas)
-
-	canvas.Render()
+	performDemo()
 
 	// prevent the app for closing - it stays running for the life of the webpage
 	ch := make(chan struct{})
@@ -33,6 +26,20 @@ func main() {
 // ----------------------------------------------------------------------------
 func setCallbacks() {
 	setVersionCallback()
+}
+
+// ----------------------------------------------------------------------------
+func performDemo() {
+	canvas := tinycanvas.NewTinyCanvas(640, 480)
+	width, height := canvas.GetDimensions()
+
+	canvas.ClearScreen(*tinycanvas.NewPixel(10, 20, 180, 255))
+	canvas.Rectangle(10, 10, width-20, height-20, *tinycanvas.NewPixel(0, 255, 0, 255))
+	canvas.Rectangle(10, 10, width/2, height/2, *tinycanvas.NewWhitePixel())
+	drawWithPixels(canvas)
+	drawRandomRectangles(canvas)
+
+	canvas.Render()
 }
 
 // ----------------------------------------------------------------------------
