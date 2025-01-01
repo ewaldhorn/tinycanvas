@@ -8,7 +8,7 @@ All of this is still very much WIP.
 Contains the canvas components.
 
 ## Demo
-Houses a very small, simple demo.
+There's a small live demo at <https://ewaldhorn.github.io/tinycanvas/> if you like.
 
 ## Zed
 I use <https://zed.dev/> as my main editor most of the time. There's a convenient `zed.sh`
