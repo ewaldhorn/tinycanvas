@@ -19,6 +19,7 @@ func main() {
 
 	canvas.ClearScreen(*tinycanvas.NewPixel(10, 20, 180, 255))
 	canvas.Rectangle(10, 10, width-20, height-20, *tinycanvas.NewPixel(0, 255, 0, 255))
+	canvas.Rectangle(10, 10, 320, 240, *tinycanvas.NewWhitePixel())
 
 	canvas.Render()
 

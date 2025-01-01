@@ -5,7 +5,7 @@ import (
 )
 
 // ----------------------------------------------------------------------------
-type DOM struct {
+type DOMElements struct {
 	window   js.Value
 	document js.Value
 	body     js.Value
@@ -13,7 +13,7 @@ type DOM struct {
 
 // ----------------------------------------------------------------------------
 type TinyCanvas struct {
-	DOM
+	DOMElements
 
 	canvas        js.Value
 	ctx           js.Value
