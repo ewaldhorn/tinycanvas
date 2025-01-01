@@ -1,9 +1,7 @@
 # TinyCanvas
 TinyGo bindings to use the HTML5 Canvas - convenience utility basically for myself.
 
-===========================================
 === All of this is still very much WIP. ===
-===========================================
 
 ## Demo
 There's a small live demo at <https://ewaldhorn.github.io/tinycanvas/> if you like.
