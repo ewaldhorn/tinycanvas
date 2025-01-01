@@ -3,6 +3,10 @@ TinyGo bindings to use the HTML5 Canvas - convenience utility basically for myse
 
 === All of this is still very much WIP. ===
 
+Basically, I often use WASM to do some data visualization work and I find that
+working with TinyGo and the HTML5 Canvas to be really handy. This is a collection
+of utilities / tools I often use, kind of cleaned up in case anyone else finds use in them.
+
 ## Demo
 There's a small live demo at <https://ewaldhorn.github.io/tinycanvas/> if you like.
 
