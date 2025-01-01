@@ -17,7 +17,8 @@ func main() {
 	bootstrap()
 
 	canvas := tinycanvas.NewTinyCanvas(640, 480)
-	fmt.Println(canvas)
+	width, height := canvas.GetDimensions()
+	dom.Log(fmt.Sprintf("Canvas has a height of %d and width of %d", width, height))
 
 	// prevent the app for closing - it stays running for the life of the webpage
 	ch := make(chan struct{})

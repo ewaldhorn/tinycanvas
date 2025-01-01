@@ -48,3 +48,6 @@ func (t *TinyCanvas) createHTMLCanvasElement() {
 }
 
 // ----------------------------------------------------------------------------
+func (t *TinyCanvas) GetDimensions() (int, int) {
+	return t.width, t.height
+}

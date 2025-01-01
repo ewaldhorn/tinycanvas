@@ -9,10 +9,19 @@ import (
 
 // ----------------------------------------------------------------------------
 var document js.Value
+var console js.Value
 
 // ----------------------------------------------------------------------------
 func init() {
 	document = js.Global().Get("document")
+	console = js.Global().Get("console")
+}
+
+// ----------------------------------------------------------------------------
+//
+// Log calls JavaScript console.log in the browser.
+func Log(message string) {
+	console.Call("log", message)
 }
 
 // ----------------------------------------------------------------------------
