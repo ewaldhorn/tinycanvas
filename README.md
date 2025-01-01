@@ -6,8 +6,8 @@ TinyGo bindings to use the HTML5 Canvas - convenience utility basically for myse
 ## Demo
 There's a small live demo at <https://ewaldhorn.github.io/tinycanvas/> if you like.
 
-### Canvas
-Contains the canvas components.
+### TinyCanvas
+Contains the canvas components along with some Pixel utilities.
 
 ### DOM
 Contains some DOM utilities, handy for this type of work.
