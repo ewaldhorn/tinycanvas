@@ -23,5 +23,3 @@ go.work.sum
 
 # env file
 .env
-static/wasm_exec_tiny.js
-static/demo.wasm
