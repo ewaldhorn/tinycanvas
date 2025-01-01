@@ -9,6 +9,8 @@ body {
 }
 
 canvas {
-  width: 100%;
-  background-color: black;
+  max-width: 80%;
+  max-height: 80%;
+  margin: auto;
+  background-color: #103010ff;
 }
