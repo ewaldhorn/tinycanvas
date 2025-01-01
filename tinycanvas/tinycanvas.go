@@ -1,4 +1,4 @@
-package canvas
+package tinycanvas
 
 import "syscall/js"
 
@@ -46,3 +46,5 @@ func (t *TinyCanvas) createHTMLCanvasElement() {
 	t.canvas.Set("width", t.width)
 	t.body.Call("appendChild", t.canvas)
 }
+
+// ----------------------------------------------------------------------------

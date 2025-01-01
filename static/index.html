@@ -2,18 +2,18 @@
   <head>
     <meta charset="utf-8" />
     <script src="wasm_exec_tiny.js"></script>
-    <title>TinyGo and Wasm Pixel Rain Effect</title>
+    <title>TinyGo and Wasm Canvas Interaction</title>
     <link href="styles.css" rel="stylesheet" />
   </head>
   <body>
-    <h1 id="title">TinyGo Pixel Rain Effect</h1>
+    <h1 id="title">TinyGo and Wasm Canvas Interaction</h1>
     <div id="loading">Loading ...</div>
 
     <script type="module" defer>
       "use strict";
 
       const go = new Go(); // Defined in wasm_exec.js
-      const WASM_URL = "tinyrain.wasm";
+      const WASM_URL = "demo.wasm";
 
       let wasm;
 
