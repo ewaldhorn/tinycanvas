@@ -1,0 +1,42 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  CANVAS_DIR: canvas
+  DEMO_DIR: demo
+  OUT_DIR: static
+  CANVAS_TARGET_FILE: tinycanvas.wasm
+  DEMO_TARGET_FILE: demo.wasm
+
+tasks:
+  default:
+    desc: Lists available tasks
+    cmds:
+      - task --list-all
+    silent: true
+  updateDependencies:
+    desc: Updates Go dependencies
+    cmds:
+      - go get -u ./...
+    silent: true
+  buildCanvas_unused:
+    desc: --UNUSED FOR NOW-- Builds the Canvas wasm component with TinyGo
+    cmds:
+      - tinygo build -o {{.OUT_DIR}}/{{.CANVAS_TARGET_FILE}} -no-debug -target wasm ./{{.CANVAS_DIR}}/.
+    silent: true
+  build:
+    desc: Builds the demo with TinyGo
+    cmds:
+      - tinygo build -o {{.OUT_DIR}}/{{.DEMO_TARGET_FILE}} -no-debug -target wasm ./{{.DEMO_DIR}}/.
+  updateWasmExec:
+    desc: Updates the wasm_exec.js file
+    cmds:
+      - cp $(tinygo env TINYGOROOT)/targets/wasm_exec.js ./{{.OUT_DIR}}/wasm_exec_tiny.js
+    silent: true
+  run:
+    desc: Builds and runs the project
+    cmds:
+      - task: build
+      - http-server ./{{.OUT_DIR}}/ -p 9000 -o -c-1
+    silent: true

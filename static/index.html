@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="wasm_exec_tiny.js"></script>
+    <title>TinyGo and Wasm Pixel Rain Effect</title>
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 id="title">TinyGo Pixel Rain Effect</h1>
+    <div id="loading">Loading ...</div>
+
+    <script type="module" defer>
+      "use strict";
+
+      const go = new Go(); // Defined in wasm_exec.js
+      const WASM_URL = "tinyrain.wasm";
+
+      let wasm;
+
+      // ----------------------------------------------------------------------
+      go.importObject.env = {
+        bootstrap: function () {
+          document.getElementById("title").innerHTML = getVersion();
+        },
+      };
+
+      // ----------------------------------------------------------------------
+      if ("instantiateStreaming" in WebAssembly) {
+        WebAssembly.instantiateStreaming(fetch(WASM_URL), go.importObject).then(
+          function (obj) {
+            wasm = obj.instance;
+            go.run(wasm);
+          },
+        );
+      } else {
+        fetch(WASM_URL)
+          .then((resp) => resp.arrayBuffer())
+          .then((bytes) =>
+            WebAssembly.instantiate(bytes, go.importObject).then(
+              function (obj) {
+                wasm = obj.instance;
+                go.run(wasm);
+              },
+            ),
+          );
+      }
+    </script>
+  </body>
+</html>

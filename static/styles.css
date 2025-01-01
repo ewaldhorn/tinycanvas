@@ -1,0 +1,13 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: Roboto, Helvetica, Arial;
+  background: #fbfbfb;
+  color: #999;
+  text-align: center;
+  padding: 10px;
+}
+
+canvas {
+  width: 100%;
+}
