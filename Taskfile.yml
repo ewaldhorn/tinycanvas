@@ -5,7 +5,7 @@ version: "3"
 vars:
   CANVAS_DIR: canvas
   DEMO_DIR: demo
-  OUT_DIR: static
+  OUT_DIR: docs
   CANVAS_TARGET_FILE: tinycanvas.wasm
   DEMO_TARGET_FILE: demo.wasm
 
