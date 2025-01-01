@@ -9,3 +9,7 @@ Contains the canvas components.
 
 ## Demo
 Houses a very small, simple demo.
+
+## Zed
+I use <https://zed.dev/> as my main editor most of the time. There's a convenient `zed.sh`
+file included to start it with the right environment variables to enable code completion etc.
