@@ -68,7 +68,7 @@ func (t *TinyCanvas) GetDimensions() (int, int) {
 }
 
 // ----------------------------------------------------------------------------
-func (t *TinyCanvas) ClearScreen(p Pixel) {
+func (t *TinyCanvas) ClearScreen(p Colour) {
 	for x := range t.width {
 		for y := range t.height {
 			t.PutPixel(x, y, p)
@@ -77,24 +77,18 @@ func (t *TinyCanvas) ClearScreen(p Pixel) {
 }
 
 // ----------------------------------------------------------------------------
-func (t *TinyCanvas) PutPixel(x, y int, p Pixel) {
+func (t *TinyCanvas) PutPixel(x, y int, p Colour) {
 	offset := (x * 4) + (y * 4 * t.width)
+
+	// don't bother if we are outside our area
+	if offset < 0 || offset > int(len(t.wasmImageData)) {
+		return
+	}
 
 	t.wasmImageData[offset] = p.r
 	t.wasmImageData[offset+1] = p.g
 	t.wasmImageData[offset+2] = p.b
 	t.wasmImageData[offset+3] = p.a
-}
-
-// ----------------------------------------------------------------------------
-// Draws a rectangle of the specified width and height from the top left corner
-// in the given colour.
-func (t *TinyCanvas) Rectangle(xStart, yStart, width, height int, p Pixel) {
-	for x := range width {
-		for y := range height {
-			t.PutPixel(xStart+x, yStart+y, p)
-		}
-	}
 }
 
 // ----------------------------------------------------------------------------
