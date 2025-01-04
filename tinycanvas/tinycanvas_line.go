@@ -24,7 +24,6 @@ func (t *TinyCanvas) Line(x1, y1, x2, y2 int) {
 
 	// Draw the line.
 	for {
-		// Set the current pixel to white.
 		t.PutColourPixel(x1, y1, t.activeColour)
 
 		// Check if we've reached the end of the line.

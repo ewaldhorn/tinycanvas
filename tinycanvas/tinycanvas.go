@@ -99,7 +99,7 @@ func (t *TinyCanvas) PutColourPixel(x, y int, p Colour) {
 	offset := (x * 4) + (y * 4 * t.width)
 
 	// don't bother if we are outside our area
-	if offset < 0 || offset > int(len(t.wasmImageData)) {
+	if offset < 0 || offset >= int(len(t.wasmImageData)) {
 		return
 	}
 
