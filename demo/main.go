@@ -10,11 +10,15 @@ import (
 //export bootstrap
 func bootstrap()
 
+// -------------------------------------------------------------------- GLOBALS
+var canvas *tinycanvas.TinyCanvas
+
 // ----------------------------------------------------------------------------
 func main() {
 	setCallbacks()
 	dom.Hide("loading")
 	bootstrap()
+	canvas = tinycanvas.NewTinyCanvas(640, 480)
 
 	performDemo()
 
@@ -26,11 +30,11 @@ func main() {
 // ----------------------------------------------------------------------------
 func setCallbacks() {
 	setVersionCallback()
+	setRefreshCallback()
 }
 
 // ----------------------------------------------------------------------------
 func performDemo() {
-	canvas := tinycanvas.NewTinyCanvas(640, 480)
 	width, height := canvas.GetDimensions()
 
 	canvas.ClearScreen(*tinycanvas.NewColour(10, 20, 180, 255))
@@ -93,4 +97,20 @@ func drawLines(canvas *tinycanvas.TinyCanvas) {
 	for i := 0; i < 50; i += 5 {
 		canvas.ColourLine(20, 300+i, 620, 300+i, *tinycanvas.NewRandomColour())
 	}
+}
+
+// ----------------------------------------------------------------------------
+func setRefreshCallback() {
+	// js.Global().Set("rerender", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+	// 	if canvas != nil {
+	// 		performDemo()
+	// 	}
+	// 	return nil
+	// }))
+
+	dom.AddEventListener("refreshButton", "click", func() {
+		if canvas != nil {
+			performDemo()
+		}
+	})
 }
