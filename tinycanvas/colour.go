@@ -22,6 +22,11 @@ func NewColourWhite() *Colour {
 }
 
 // ----------------------------------------------------------------------------
+func NewColourBlack() *Colour {
+	return &Colour{a: MAX_COLOUR_VALUE}
+}
+
+// ----------------------------------------------------------------------------
 func NewRandomColour() *Colour {
 	return &Colour{
 		r: uint8(rand.Float32() * float32(MAX_COLOUR_VALUE)),

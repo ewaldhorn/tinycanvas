@@ -4,35 +4,42 @@ package tinycanvas
 // Draws a rectangle of the specified width and height from the top left corner
 // filled with the given colour.
 func (t *TinyCanvas) FilledRectangle(xStart, yStart, width, height int, colour Colour) {
+	tmpC := t.activeColour
+	t.activeColour = colour
+
 	for x := range width {
 		for y := range height {
-			t.PutPixel(xStart+x, yStart+y, colour)
+			t.PutPixel(xStart+x, yStart+y)
 		}
 	}
+
+	t.activeColour = tmpC
 }
 
 // ----------------------------------------------------------------------------
-// Draws a single pixel wide Rectangle
-func (t *TinyCanvas) _rectangle(xStart, yStart, width, height int, colour Colour) {
-	t.Line(xStart, yStart, xStart+width, yStart, colour)               // top
-	t.Line(xStart+width, yStart, xStart+width, yStart+height, colour)  // right
-	t.Line(xStart, yStart+height, xStart+width, yStart+height, colour) // bottom
-	t.Line(xStart, yStart, xStart, yStart+height, colour)              // left
+// Draws a single pixel wide Rectangle in the default canvas colour
+func (t *TinyCanvas) _rectangle(xStart, yStart, width, height int) {
+	t.Line(xStart, yStart, xStart+width, yStart)               // top
+	t.Line(xStart+width, yStart, xStart+width, yStart+height)  // right
+	t.Line(xStart, yStart+height, xStart+width, yStart+height) // bottom
+	t.Line(xStart, yStart, xStart, yStart+height)              // left
 }
 
 // ----------------------------------------------------------------------------
 // Draws a rectangle with the specified width and height from the top left corner
 // having a border of the specified thickness and colour.
-func (t *TinyCanvas) Rectangle(xStart, yStart, width, height, thickness int, colour Colour) {
-	// TODO We need LINES
-	t._rectangle(xStart, yStart, width, height, colour)
-	t.Line(400, 100, 400, 400, *NewColour(255, 128, 128, 255))
-	t.Line(401, 100, 401, 400, *NewColour(255, 128, 128, 255))
-	t.Line(402, 100, 402, 400, *NewColour(255, 128, 128, 255))
-	t.Line(403, 100, 403, 400, *NewColour(255, 128, 128, 255))
+func (t *TinyCanvas) ColourRectangle(xStart, yStart, width, height, thickness int, colour Colour) {
+	tmpC := t.activeColour
+	t.activeColour = colour
 
-	for i := range 50 {
-		t.PutPixel(450+i, 100, *NewColourWhite())
-	}
+	t._rectangle(xStart, yStart, width, height)
 
+	t.activeColour = tmpC
+}
+
+// ----------------------------------------------------------------------------
+// Draws a rectangle with the specified width and height from the top left corner
+// having a border of the specified thickness and default colour.
+func (t *TinyCanvas) Rectangle(xStart, yStart, width, height, thickness int) {
+	t._rectangle(xStart, yStart, width, height)
 }

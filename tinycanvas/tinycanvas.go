@@ -22,6 +22,8 @@ type TinyCanvas struct {
 	wasmImageData []uint8
 	width         int
 	height        int
+
+	activeColour Colour
 }
 
 // ----------------------------------------------------------------------------
@@ -37,6 +39,8 @@ func NewTinyCanvas(width, height int) *TinyCanvas {
 		tinyCanvas.width = tinyCanvas.window.Get("innerWidth").Int()
 		tinyCanvas.height = tinyCanvas.window.Get("innerHeight").Int()
 	}
+
+	tinyCanvas.activeColour = *NewColourBlack()
 
 	tinyCanvas.createHTMLCanvasElement()
 
@@ -71,13 +75,27 @@ func (t *TinyCanvas) GetDimensions() (int, int) {
 func (t *TinyCanvas) ClearScreen(p Colour) {
 	for x := range t.width {
 		for y := range t.height {
-			t.PutPixel(x, y, p)
+			t.PutColourPixel(x, y, p)
 		}
 	}
 }
 
 // ----------------------------------------------------------------------------
-func (t *TinyCanvas) PutPixel(x, y int, p Colour) {
+// GetColour returns the active colour currently set
+func (t *TinyCanvas) GetColour() Colour {
+	return t.activeColour
+}
+
+// ----------------------------------------------------------------------------
+// SetColour sets the active colour to be used when drawing
+func (t *TinyCanvas) SetColour(p Colour) {
+	t.activeColour = p
+}
+
+// ----------------------------------------------------------------------------
+// PutColourPixel draws a single pixel at coordinates x,y using the specified
+// colour. Does nothing if coordinates fall outside the canvas dimensions.
+func (t *TinyCanvas) PutColourPixel(x, y int, p Colour) {
 	offset := (x * 4) + (y * 4 * t.width)
 
 	// don't bother if we are outside our area
@@ -92,7 +110,15 @@ func (t *TinyCanvas) PutPixel(x, y int, p Colour) {
 }
 
 // ----------------------------------------------------------------------------
-// Copies buffer to canvas
+// PutPixel draws a single pixel at coordinates x,y using the active colour.
+// Active colour can be set using SetColour(). Does nothing if coordinates
+// fall outside the canvas dimensions.
+func (t *TinyCanvas) PutPixel(x, y int) {
+	t.PutColourPixel(x, y, t.activeColour)
+}
+
+// ----------------------------------------------------------------------------
+// Copies buffer to HTML5 canvas
 func (t *TinyCanvas) Render() {
 	js.CopyBytesToJS(t.imageBuffer, t.wasmImageData)   // copy local buffer to JS buffer
 	t.imageData.Get("data").Call("set", t.imageBuffer) // copy that data to the canvas image data buffer

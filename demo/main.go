@@ -54,7 +54,7 @@ func drawWithPixels(canvas *tinycanvas.TinyCanvas) {
 
 	for x := 0; x < 50; x += 5 {
 		for y := 0; y < 50; y += 5 {
-			canvas.PutPixel(280+x, 200+y, redPixel)
+			canvas.PutColourPixel(280+x, 200+y, redPixel)
 		}
 	}
 }
@@ -71,7 +71,7 @@ func drawRandomFilledRectangles(canvas *tinycanvas.TinyCanvas) {
 // ----------------------------------------------------------------------------
 func drawRandomRectangles(canvas *tinycanvas.TinyCanvas) {
 	for i := range 10 {
-		canvas.Rectangle(340+(i*15), 20, 10, 10, 1, *tinycanvas.NewRandomColour())
+		canvas.ColourRectangle(340+(i*15), 20, 10, 10, 1, *tinycanvas.NewRandomColour())
 	}
 }
 
@@ -84,9 +84,16 @@ func drawRandomCircles(canvas *tinycanvas.TinyCanvas) {
 
 // ----------------------------------------------------------------------------
 func drawLines(canvas *tinycanvas.TinyCanvas) {
+
+	canvas.Line(10, 400, 630, 400)
+	canvas.Line(10, 405, 630, 405)
+	canvas.Line(10, 410, 630, 410)
+	canvas.Line(10, 415, 630, 415)
+	canvas.Line(10, 420, 630, 420)
+
 	for i := 0; i < 50; i += 5 {
-		canvas.Line(20, 300+i, 620, 300+i, *tinycanvas.NewRandomColour())
+		canvas.ColourLine(20, 300+i, 620, 300+i, *tinycanvas.NewRandomColour())
 	}
 
-	canvas.Line(215, 15, 250, 250, *tinycanvas.NewColour(0, 0, 0, 255))
+	canvas.ColourLine(215, 15, 250, 250, *tinycanvas.NewColour(0, 0, 0, 255))
 }
