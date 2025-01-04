@@ -14,3 +14,7 @@ canvas {
   margin: auto;
   background-color: #103010ff;
 }
+
+#controls {
+  display: none;
+}

@@ -6,21 +6,21 @@ package tinycanvas
 // TODO: Look into anti-aliasing lines
 func (t *TinyCanvas) Line(x1, y1, x2, y2 int) {
 	// Calculate the absolute differences between the x and y coordinates.
-	dx := abs(x2 - x1)
-	dy := abs(y2 - y1)
+	diffX := abs(x2 - x1)
+	diffY := abs(y2 - y1)
 
 	// Determine the direction of the line.
-	sx := -1
+	slopeX := -1
 	if x1 < x2 {
-		sx = 1
+		slopeX = 1
 	}
-	sy := -1
+	slopeY := -1
 	if y1 < y2 {
-		sy = 1
+		slopeY = 1
 	}
 
 	// Initialize the error value.
-	err := dx - dy
+	errVal := diffX - diffY
 
 	// Draw the line.
 	for {
@@ -32,14 +32,14 @@ func (t *TinyCanvas) Line(x1, y1, x2, y2 int) {
 		}
 
 		// Adjust the error value and update the x and y coordinates.
-		e2 := 2 * err
-		if e2 > -dy {
-			err -= dy
-			x1 += sx
+		errVal2 := 2 * errVal
+		if errVal2 > -diffY {
+			errVal -= diffY
+			x1 += slopeX
 		}
-		if e2 < dx {
-			err += dx
-			y1 += sy
+		if errVal2 < diffX {
+			errVal += diffX
+			y1 += slopeY
 		}
 	}
 }

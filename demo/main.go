@@ -17,6 +17,7 @@ var canvas *tinycanvas.TinyCanvas
 func main() {
 	setCallbacks()
 	dom.Hide("loading")
+	dom.Show("controls")
 	bootstrap()
 	canvas = tinycanvas.NewTinyCanvas(640, 480)
 
