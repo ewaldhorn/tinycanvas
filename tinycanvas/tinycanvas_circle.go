@@ -10,6 +10,6 @@ func (t *TinyCanvas) Circle(midX, midY, radius int, colour Colour) {
 		x := int(rad * math.Cos(deg))
 		y := int(rad * math.Sin(deg))
 		t.PutPixel(midX+x, midY+y, colour)
-		deg += 0.005
+		deg += 0.0025
 	}
 }

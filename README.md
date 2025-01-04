@@ -1,11 +1,17 @@
 # TinyCanvas
-TinyGo bindings to use the HTML5 Canvas - convenience utility basically for myself.
+TinyGo-based in-memory canvas that can output to the HTML5 Canvas.
 
+It's not entirely based on calling the HTML5 Canvas functions directly, but rather
+creates an in-memory buffer that gets copied and displayed by the canvas. This tool
+was built to help migrate old Turbo Pascal programs to something a bit more modern,
+with the intention of sticking as closesly to the old output as possible.
+
+<br>
 === All of this is still very much WIP. ===
+<br>
 
-Basically, I often use WASM to do some data visualization work and I find that
-working with TinyGo and the HTML5 Canvas to be really handy. This is a collection
-of utilities / tools I often use, kind of cleaned up in case anyone else finds use in them.
+This is a collection of utilities / tools I use, kind of cleaned up in case anyone
+else finds a use for them.
 
 ## Demo
 There's a small live demo at <https://ewaldhorn.github.io/tinycanvas/> if you like.
