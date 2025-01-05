@@ -30,6 +30,15 @@ tasks:
     cmds:
       - tinygo build -o {{.OUT_DIR}}/{{.DEMO_TARGET_FILE}} -no-debug -target wasm ./{{.DEMO_DIR}}/.
     silent: true
+  test:
+    desc: Runs the unit tests
+    cmds:
+      - tinygo test -target wasm ./tinycanvas/...
+  lint:
+    desc: --UNUSED FOR NOW-- Runs the golangci-lint tool
+    cmds:
+      - env GOOS=js GOARCH=wasm golangci-lint run
+    silent: true
   updateWasmExec:
     desc: Updates the wasm_exec.js file
     cmds:
