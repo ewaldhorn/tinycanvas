@@ -3,7 +3,7 @@
 version: "3"
 
 vars:
-  CANVAS_DIR: canvas
+  CANVAS_DIR: tinycanvas
   DEMO_DIR: demo
   OUT_DIR: docs
   CANVAS_TARGET_FILE: tinycanvas.wasm
@@ -33,7 +33,7 @@ tasks:
   test:
     desc: Runs the unit tests
     cmds:
-      - tinygo test -target wasm ./tinycanvas/...
+      - tinygo test -target wasm ./{{.CANVAS_DIR}}/...
   lint:
     desc: --UNUSED FOR NOW-- Runs the golangci-lint tool
     cmds:
@@ -49,4 +49,10 @@ tasks:
     cmds:
       - task: build
       - http-server ./{{.OUT_DIR}}/ -p 9000 -o -c-1
+    silent: true
+  coverreport:
+    desc: --UNUSED-- Shows test coverage report
+    cmds:
+      - tinygo test -target wasm -cover -coverprofile=coverage.out {{.CANVAS_DIR}}
+      - go tool cover -html=coverage.out
     silent: true
