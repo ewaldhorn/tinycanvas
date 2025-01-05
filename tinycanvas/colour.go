@@ -12,6 +12,12 @@ type Colour struct {
 }
 
 // ----------------------------------------------------------------------------
+// an empty colour is used for transparent effects
+func (c *Colour) IsEmpty() bool {
+	return c.a == 0 && c.b == 0 && c.g == 0 && c.r == 0
+}
+
+// ----------------------------------------------------------------------------
 func NewColour(r, g, b, a uint8) *Colour {
 	return &Colour{r: r, g: g, b: b, a: a}
 }
@@ -24,6 +30,14 @@ func NewColourWhite() *Colour {
 // ----------------------------------------------------------------------------
 func NewColourBlack() *Colour {
 	return &Colour{a: MAX_COLOUR_VALUE}
+}
+
+// ----------------------------------------------------------------------------
+// empty colour signals to the renderer not to draw anything and is used to create
+// transparent "gaps" in images. This is a legacy feature to support some very
+// old file formats.
+func NewColourEmpty() *Colour {
+	return &Colour{}
 }
 
 // ----------------------------------------------------------------------------
