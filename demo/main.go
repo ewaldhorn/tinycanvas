@@ -118,17 +118,17 @@ func drawSpiral(canvas *tinycanvas.TinyCanvas) {
 	steps := 1
 
 	// Number of times to change direction
-	changes := 30
+	targetSize := 30
 
 	stepSize := 2
 
 	// Current number of changes
-	change := 0
+	currentSize := 0
 
 	// Previous position
 	prevX, prevY := centerX, centerY
 
-	for change < changes {
+	for currentSize < targetSize {
 		// Take steps in the current direction
 		for i := 0; i < steps*2; i++ {
 			// Store the current position as the previous position
@@ -148,7 +148,6 @@ func drawSpiral(canvas *tinycanvas.TinyCanvas) {
 
 			// Draw a line from the previous position to the current position
 			canvas.Line(prevX, prevY, centerX, centerY)
-
 		}
 
 		// Change direction
@@ -158,7 +157,7 @@ func drawSpiral(canvas *tinycanvas.TinyCanvas) {
 		steps++
 
 		// Increment the change counter
-		change++
+		currentSize++
 	}
 }
 
