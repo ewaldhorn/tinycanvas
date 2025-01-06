@@ -50,6 +50,7 @@ func performDemo() {
 	drawRandomFilledRectangles(canvas)
 	drawRandomRectangles(canvas)
 	drawRandomCircles(canvas)
+	drawSpiral(canvas)
 
 	canvas.Render()
 }
@@ -103,6 +104,61 @@ func drawLines(canvas *tinycanvas.TinyCanvas) {
 	for i := 0; i < 80; i += 5 {
 		canvas.Line(20, 10+canvas.Height()/2+i, canvas.Width()/2-i-40, 10+canvas.Height()/2+i)
 		canvas.Line(20+i, 10+canvas.Height()/2+i, 20+i, canvas.Height()-20-i)
+	}
+}
+
+// ----------------------------------------------------------------------------
+func drawSpiral(canvas *tinycanvas.TinyCanvas) {
+	centerX, centerY := canvas.Width()/2-(canvas.Width()/4), canvas.Height()/2+(canvas.Height()/3)
+
+	// Initial direction (0: east, 1: south, 2: west, 3: north)
+	direction := 0
+
+	// Number of steps to take in each direction
+	steps := 1
+
+	// Number of times to change direction
+	changes := 30
+
+	stepSize := 2
+
+	// Current number of changes
+	change := 0
+
+	// Previous position
+	prevX, prevY := centerX, centerY
+
+	for change < changes {
+		// Take steps in the current direction
+		for i := 0; i < steps*2; i++ {
+			// Store the current position as the previous position
+			prevX, prevY = centerX, centerY
+
+			// Move in the current direction
+			switch direction {
+			case 0: // east
+				centerX += stepSize
+			case 1: // south
+				centerY -= stepSize
+			case 2: // west
+				centerX -= stepSize
+			case 3: // north
+				centerY += stepSize
+			}
+
+			// Draw a line from the previous position to the current position
+			canvas.Line(prevX, prevY, centerX, centerY)
+
+		}
+
+		// Change direction
+		direction = (direction + 1) % 4
+
+		// Increase the number of steps for the next direction
+		steps++
+
+		// Increment the change counter
+		change++
 	}
 }
 
