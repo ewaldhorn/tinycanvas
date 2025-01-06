@@ -74,6 +74,16 @@ func (t *TinyCanvas) GetDimensions() (int, int) {
 }
 
 // ----------------------------------------------------------------------------
+func (t *TinyCanvas) Width() int {
+	return t.width
+}
+
+// ----------------------------------------------------------------------------
+func (t *TinyCanvas) Height() int {
+	return t.height
+}
+
+// ----------------------------------------------------------------------------
 func (t *TinyCanvas) ClearScreen(p colour.Colour) {
 	for x := range t.width {
 		for y := range t.height {

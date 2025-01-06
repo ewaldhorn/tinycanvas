@@ -20,7 +20,7 @@ func main() {
 	dom.Hide("loading")
 	dom.Show("controls")
 	bootstrap()
-	canvas = tinycanvas.NewTinyCanvas(640, 480)
+	canvas = tinycanvas.NewTinyCanvas(800, 600)
 
 	performDemo()
 
@@ -40,10 +40,12 @@ func performDemo() {
 	width, height := canvas.GetDimensions()
 
 	canvas.ClearScreen(*colour.NewColour(10, 20, 180, 255))
+
 	canvas.FilledRectangle(10, 10, width-20, height-20, *colour.NewColour(0, 255, 0, 255))
-	canvas.FilledRectangle(10, 10, (width/2)-10, (height/2)-10, *colour.NewColourWhite())
-	canvas.FilledRectangle(510, 350, 120, 120, *colour.NewColourWhite())
 	drawLines(canvas)
+	canvas.FilledRectangle(10, 10, (width/2)-10, (height/2)-10, *colour.NewColourWhite())
+	canvas.FilledRectangle(width-130, height-130, 120, 120, *colour.NewColourWhite())
+
 	drawWithPixels(canvas)
 	drawRandomFilledRectangles(canvas)
 	drawRandomRectangles(canvas)
@@ -56,10 +58,10 @@ func performDemo() {
 // Canvas supports setting individual pixels.
 func drawWithPixels(canvas *tinycanvas.TinyCanvas) {
 	redPixel := *colour.NewColour(255, 0, 0, 255)
-
-	for x := 0; x < 50; x += 5 {
-		for y := 0; y < 50; y += 5 {
-			canvas.PutColourPixel(270+x, 190+y, redPixel)
+	const gridSize int = 50
+	for x := 0; x < gridSize; x += 5 {
+		for y := 0; y < gridSize; y += 5 {
+			canvas.PutColourPixel(canvas.Width()/2-gridSize+x, canvas.Height()/2-gridSize+y, redPixel)
 		}
 	}
 }
@@ -77,7 +79,7 @@ func drawRandomFilledRectangles(canvas *tinycanvas.TinyCanvas) {
 func drawRandomRectangles(canvas *tinycanvas.TinyCanvas) {
 	for y := range 4 {
 		for i := range 10 {
-			canvas.ColourRectangle(340+(i*15), 20+(20*y), 10, 10, 1, *colour.NewRandomColour())
+			canvas.ColourRectangle(10+canvas.Width()/2+(i*15), 20+(20*y), 10, 10, 1, *colour.NewRandomColour())
 		}
 	}
 }
@@ -85,7 +87,7 @@ func drawRandomRectangles(canvas *tinycanvas.TinyCanvas) {
 // ----------------------------------------------------------------------------
 func drawRandomCircles(canvas *tinycanvas.TinyCanvas) {
 	for i := 6; i < 60; i += 3 {
-		canvas.Circle(570, 410, i, *colour.NewRandomColour())
+		canvas.Circle(canvas.Width()-70, canvas.Height()-70, i, *colour.NewRandomColour())
 	}
 }
 
@@ -93,11 +95,14 @@ func drawRandomCircles(canvas *tinycanvas.TinyCanvas) {
 func drawLines(canvas *tinycanvas.TinyCanvas) {
 	canvas.SetColour(*colour.NewColour(255, 0, 0, 255))
 	w, h := canvas.GetDimensions()
-	canvas.Line(0, 0, w, h) // top left to bottom right
-	canvas.Line(0, h, w, 0) // bottom left to top right
+	canvas.Line(0, 0, w, h)     // top left to bottom right
+	canvas.Line(w/2, h/2, w, 0) // middle to top right
 
-	for i := 0; i < 50; i += 5 {
-		canvas.ColourLine(20, 300+i, 620, 300+i, *colour.NewRandomColour())
+	canvas.SetColour(*colour.NewColourBlack())
+
+	for i := 0; i < 80; i += 5 {
+		canvas.Line(20, 10+canvas.Height()/2+i, canvas.Width()/2-i-40, 10+canvas.Height()/2+i)
+		canvas.Line(20+i, 10+canvas.Height()/2+i, 20+i, canvas.Height()-20-i)
 	}
 }
 
