@@ -1,5 +1,7 @@
 package tinycanvas
 
+import "github.com/ewaldhorn/tinycanvas/colour"
+
 // ----------------------------------------------------------------------------
 // Draws a one pixel line from X1,Y1 to X2,Y2 in the active colour.
 // Based on https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
@@ -48,7 +50,7 @@ func (t *TinyCanvas) Line(x1, y1, x2, y2 int) {
 // Draws a one pixel line from X1,Y1 to X2,Y2 in the specified colour.
 // Based on https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 // TODO: Look into anti-aliasing lines
-func (t *TinyCanvas) ColourLine(x1, y1, x2, y2 int, p Colour) {
+func (t *TinyCanvas) ColourLine(x1, y1, x2, y2 int, p colour.Colour) {
 	tmpC := t.activeColour
 	t.activeColour = p
 

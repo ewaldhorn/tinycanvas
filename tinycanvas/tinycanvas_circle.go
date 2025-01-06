@@ -1,9 +1,13 @@
 package tinycanvas
 
-import "math"
+import (
+	"math"
+
+	"github.com/ewaldhorn/tinycanvas/colour"
+)
 
 // ----------------------------------------------------------------------------
-func (t *TinyCanvas) Circle(midX, midY, radius int, colour Colour) {
+func (t *TinyCanvas) Circle(midX, midY, radius int, colour colour.Colour) {
 	rad := float64(radius)
 	deg := 0.0
 	for deg < 6.4 {

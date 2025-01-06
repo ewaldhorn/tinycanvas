@@ -19,6 +19,9 @@ There's a small live demo at <https://ewaldhorn.github.io/tinycanvas/> if you li
 ### TinyCanvas
 Contains the canvas components along with some Pixel utilities.
 
+### Colour
+Contains colour components. I ended up extracting it because it can be useful on its own.
+
 ### DOM
 Contains some DOM utilities, handy for this type of work.
 

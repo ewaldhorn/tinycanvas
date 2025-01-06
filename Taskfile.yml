@@ -4,6 +4,7 @@ version: "3"
 
 vars:
   CANVAS_DIR: tinycanvas
+  COLOUR_DIR: colour
   DEMO_DIR: demo
   OUT_DIR: docs
   CANVAS_TARGET_FILE: tinycanvas.wasm
@@ -33,7 +34,7 @@ tasks:
   test:
     desc: Runs the unit tests
     cmds:
-      - tinygo test -target wasm ./{{.CANVAS_DIR}}/...
+      - tinygo test -target wasm ./{{.COLOUR_DIR}}/...
   lint:
     desc: --UNUSED FOR NOW-- Runs the golangci-lint tool
     cmds:

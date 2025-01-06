@@ -2,6 +2,8 @@ package tinycanvas
 
 import (
 	"syscall/js"
+
+	"github.com/ewaldhorn/tinycanvas/colour"
 )
 
 // ----------------------------------------------------------------------------
@@ -23,7 +25,7 @@ type TinyCanvas struct {
 	width         int
 	height        int
 
-	activeColour Colour
+	activeColour colour.Colour
 }
 
 // ----------------------------------------------------------------------------
@@ -40,7 +42,7 @@ func NewTinyCanvas(width, height int) *TinyCanvas {
 		tinyCanvas.height = tinyCanvas.window.Get("innerHeight").Int()
 	}
 
-	tinyCanvas.activeColour = *NewColourBlack()
+	tinyCanvas.activeColour = *colour.NewColourBlack()
 
 	tinyCanvas.createHTMLCanvasElement()
 
@@ -72,7 +74,7 @@ func (t *TinyCanvas) GetDimensions() (int, int) {
 }
 
 // ----------------------------------------------------------------------------
-func (t *TinyCanvas) ClearScreen(p Colour) {
+func (t *TinyCanvas) ClearScreen(p colour.Colour) {
 	for x := range t.width {
 		for y := range t.height {
 			t.PutColourPixel(x, y, p)
@@ -82,20 +84,20 @@ func (t *TinyCanvas) ClearScreen(p Colour) {
 
 // ----------------------------------------------------------------------------
 // GetColour returns the active colour currently set
-func (t *TinyCanvas) GetColour() Colour {
+func (t *TinyCanvas) GetColour() colour.Colour {
 	return t.activeColour
 }
 
 // ----------------------------------------------------------------------------
 // SetColour sets the active colour to be used when drawing
-func (t *TinyCanvas) SetColour(p Colour) {
+func (t *TinyCanvas) SetColour(p colour.Colour) {
 	t.activeColour = p
 }
 
 // ----------------------------------------------------------------------------
 // PutColourPixel draws a single pixel at coordinates x,y using the specified
 // colour. Does nothing if coordinates fall outside the canvas dimensions.
-func (t *TinyCanvas) PutColourPixel(x, y int, p Colour) {
+func (t *TinyCanvas) PutColourPixel(x, y int, p colour.Colour) {
 	offset := (x * 4) + (y * 4 * t.width)
 
 	// don't bother if we are outside our area
@@ -103,10 +105,10 @@ func (t *TinyCanvas) PutColourPixel(x, y int, p Colour) {
 		return
 	}
 
-	t.wasmImageData[offset] = p.r
-	t.wasmImageData[offset+1] = p.g
-	t.wasmImageData[offset+2] = p.b
-	t.wasmImageData[offset+3] = p.a
+	t.wasmImageData[offset] = p.R
+	t.wasmImageData[offset+1] = p.G
+	t.wasmImageData[offset+2] = p.B
+	t.wasmImageData[offset+3] = p.A
 }
 
 // ----------------------------------------------------------------------------

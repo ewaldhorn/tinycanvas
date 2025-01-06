@@ -1,4 +1,4 @@
-package tinycanvas
+package colour
 
 import (
 	"math/rand"
@@ -8,28 +8,28 @@ const MAX_COLOUR_VALUE uint8 = 255
 
 // ----------------------------------------------------------------------------
 type Colour struct {
-	r, g, b, a uint8
+	R, G, B, A uint8
 }
 
 // ----------------------------------------------------------------------------
 // an empty colour is used for transparent effects
 func (c *Colour) IsEmpty() bool {
-	return c.a == 0 && c.b == 0 && c.g == 0 && c.r == 0
+	return c.A == 0 && c.B == 0 && c.G == 0 && c.R == 0
 }
 
 // ----------------------------------------------------------------------------
 func NewColour(r, g, b, a uint8) *Colour {
-	return &Colour{r: r, g: g, b: b, a: a}
+	return &Colour{R: r, G: g, B: b, A: a}
 }
 
 // ----------------------------------------------------------------------------
 func NewColourWhite() *Colour {
-	return &Colour{r: MAX_COLOUR_VALUE, g: MAX_COLOUR_VALUE, b: MAX_COLOUR_VALUE, a: MAX_COLOUR_VALUE}
+	return &Colour{R: MAX_COLOUR_VALUE, G: MAX_COLOUR_VALUE, B: MAX_COLOUR_VALUE, A: MAX_COLOUR_VALUE}
 }
 
 // ----------------------------------------------------------------------------
 func NewColourBlack() *Colour {
-	return &Colour{a: MAX_COLOUR_VALUE}
+	return &Colour{A: MAX_COLOUR_VALUE}
 }
 
 // ----------------------------------------------------------------------------
@@ -43,9 +43,9 @@ func NewColourEmpty() *Colour {
 // ----------------------------------------------------------------------------
 func NewRandomColour() *Colour {
 	return &Colour{
-		r: uint8(rand.Float32() * float32(MAX_COLOUR_VALUE)),
-		g: uint8(rand.Float32() * float32(MAX_COLOUR_VALUE)),
-		b: uint8(rand.Float32() * float32(MAX_COLOUR_VALUE)),
-		a: MAX_COLOUR_VALUE,
+		R: uint8(rand.Float32() * float32(MAX_COLOUR_VALUE)),
+		G: uint8(rand.Float32() * float32(MAX_COLOUR_VALUE)),
+		B: uint8(rand.Float32() * float32(MAX_COLOUR_VALUE)),
+		A: MAX_COLOUR_VALUE,
 	}
 }

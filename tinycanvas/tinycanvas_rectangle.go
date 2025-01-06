@@ -1,9 +1,11 @@
 package tinycanvas
 
+import "github.com/ewaldhorn/tinycanvas/colour"
+
 // ----------------------------------------------------------------------------
 // Draws a rectangle of the specified width and height from the top left corner
 // filled with the given colour.
-func (t *TinyCanvas) FilledRectangle(xStart, yStart, width, height int, colour Colour) {
+func (t *TinyCanvas) FilledRectangle(xStart, yStart, width, height int, colour colour.Colour) {
 	tmpC := t.activeColour
 	t.activeColour = colour
 
@@ -28,7 +30,7 @@ func (t *TinyCanvas) _rectangle(xStart, yStart, width, height int) {
 // ----------------------------------------------------------------------------
 // Draws a rectangle with the specified width and height from the top left corner
 // having a border of the specified thickness and colour.
-func (t *TinyCanvas) ColourRectangle(xStart, yStart, width, height, thickness int, colour Colour) {
+func (t *TinyCanvas) ColourRectangle(xStart, yStart, width, height, thickness int, colour colour.Colour) {
 	tmpC := t.activeColour
 	t.activeColour = colour
 
