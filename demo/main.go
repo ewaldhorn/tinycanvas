@@ -101,15 +101,17 @@ func drawLines(canvas *tinycanvas.TinyCanvas) {
 
 	canvas.SetColour(*colour.NewColourBlack())
 
-	for i := 0; i < 80; i += 5 {
-		canvas.Line(20, 10+canvas.Height()/2+i, canvas.Width()/2-i-40, 10+canvas.Height()/2+i)
-		canvas.Line(20+i, 10+canvas.Height()/2+i, 20+i, canvas.Height()-20-i)
+	for i := 0; i < 60; i += 5 {
+		canvas.Line(40, 10+canvas.Height()/2+i, canvas.Width()/2-i-40, 10+canvas.Height()/2+i)                  // top
+		canvas.Line(40+i, 10+canvas.Height()/2+i, 40+i, canvas.Height()-20-i)                                   // left
+		canvas.Line(canvas.Width()/2-i-40, 10+canvas.Height()/2+i, canvas.Width()/2-i-40, canvas.Height()-20-i) //right
+		canvas.Line(40, canvas.Height()-i-20, canvas.Width()/2-i-40, canvas.Height()-i-20)                      // bottom
 	}
 }
 
 // ----------------------------------------------------------------------------
 func drawSpiral(canvas *tinycanvas.TinyCanvas) {
-	centerX, centerY := canvas.Width()/2-(canvas.Width()/4), canvas.Height()/2+(canvas.Height()/3)
+	centerX, centerY := canvas.Width()/4, canvas.Height()/2+(canvas.Height()/4)
 
 	// Initial direction (0: east, 1: south, 2: west, 3: north)
 	direction := 0
@@ -118,7 +120,7 @@ func drawSpiral(canvas *tinycanvas.TinyCanvas) {
 	steps := 1
 
 	// Number of times to change direction
-	targetSize := 30
+	targetSize := 32
 
 	stepSize := 2
 
