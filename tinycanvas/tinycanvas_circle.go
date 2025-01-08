@@ -54,4 +54,17 @@ func (t *TinyCanvas) ColourFilledCircle(midX, midY, radius int, colour colour.Co
 }
 
 // ----------------------------------------------------------------------------
-func (t *TinyCanvas) BorderCircle(midX, midY, radius, borderWidth int) {}
+func (t *TinyCanvas) BorderCircle(midX, midY, radius, borderWidth int) {
+	innerRadius := radius - borderWidth
+	innerRadiusSquared := innerRadius * innerRadius
+	radiusSquared := radius * radius
+
+	for y := -radius; y <= radius; y++ {
+		for x := -radius; x <= radius; x++ {
+			distSquared := x*x + y*y
+			if distSquared <= radiusSquared && distSquared > innerRadiusSquared {
+				t.PutPixel(midX+x, midY+y)
+			}
+		}
+	}
+}
