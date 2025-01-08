@@ -26,7 +26,7 @@ func (t *TinyCanvas) Line(x1, y1, x2, y2 int) {
 
 	// Draw the line.
 	for {
-		t.PutColourPixel(x1, y1, t.activeColour)
+		t.PutPixel(x1, y1)
 
 		// Check if we've reached the end of the line.
 		if x1 == x2 && y1 == y2 {
@@ -50,11 +50,9 @@ func (t *TinyCanvas) Line(x1, y1, x2, y2 int) {
 // Draws a one pixel line from X1,Y1 to X2,Y2 in the specified colour.
 // Based on https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 // TODO: Look into anti-aliasing lines
-func (t *TinyCanvas) ColourLine(x1, y1, x2, y2 int, p colour.Colour) {
-	tmpC := t.activeColour
-	t.activeColour = p
-
+func (t *TinyCanvas) ColourLine(x1, y1, x2, y2 int, colour colour.Colour) {
+	t.SaveColour()
+	t.SetColour(colour)
 	t.Line(x1, y1, x2, y2)
-
-	t.activeColour = tmpC
+	t.RestoreColour()
 }
