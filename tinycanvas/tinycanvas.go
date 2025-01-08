@@ -112,6 +112,13 @@ func (t *TinyCanvas) SaveColour() {
 }
 
 // ----------------------------------------------------------------------------
+// Switches and saves the colour
+func (t *TinyCanvas) SwitchAndSaveColour(colour colour.Colour) {
+	t.SaveColour()
+	t.SetColour(colour)
+}
+
+// ----------------------------------------------------------------------------
 // Restores the saved colour
 func (t *TinyCanvas) RestoreColour() {
 	t.SetColour(t.savedColour)

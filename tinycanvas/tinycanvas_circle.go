@@ -20,8 +20,7 @@ func (t *TinyCanvas) Circle(midX, midY, radius int) {
 
 // ----------------------------------------------------------------------------
 func (t *TinyCanvas) ColourCircle(midX, midY, radius int, colour colour.Colour) {
-	t.SaveColour()
-	t.SetColour(colour)
+	t.SwitchAndSaveColour(colour)
 	t.Circle(midX, midY, radius)
 	t.RestoreColour()
 }
@@ -40,8 +39,7 @@ func (t *TinyCanvas) FilledCircle(midX, midY, radius int) {
 // ----------------------------------------------------------------------------
 func (t *TinyCanvas) ColourFilledCircle(midX, midY, radius int, colour colour.Colour) {
 	// preserve canvas colour
-	t.SaveColour()
-	t.SetColour(colour)
+	t.SwitchAndSaveColour(colour)
 	t.FilledCircle(midX, midY, radius)
 	// restore original canvas colour
 	t.RestoreColour()
@@ -65,8 +63,7 @@ func (t *TinyCanvas) BorderCircle(midX, midY, radius, borderWidth int) {
 
 // ----------------------------------------------------------------------------
 func (t *TinyCanvas) ColourBorderCircle(midX, midY, radius, borderWidth int, colour colour.Colour) {
-	t.SaveColour()
-	t.SetColour(colour)
+	t.SwitchAndSaveColour(colour)
 	t.BorderCircle(midX, midY, radius, borderWidth)
 	t.RestoreColour()
 }

@@ -51,8 +51,7 @@ func (t *TinyCanvas) Line(x1, y1, x2, y2 int) {
 // Based on https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 // TODO: Look into anti-aliasing lines
 func (t *TinyCanvas) ColourLine(x1, y1, x2, y2 int, colour colour.Colour) {
-	t.SaveColour()
-	t.SetColour(colour)
+	t.SwitchAndSaveColour(colour)
 	t.Line(x1, y1, x2, y2)
 	t.RestoreColour()
 }
