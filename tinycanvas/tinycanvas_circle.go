@@ -68,3 +68,13 @@ func (t *TinyCanvas) BorderCircle(midX, midY, radius, borderWidth int) {
 		}
 	}
 }
+
+// ----------------------------------------------------------------------------
+func (t *TinyCanvas) ColourBorderCircle(midX, midY, radius, borderWidth int, colour *colour.Colour) {
+	tmpC := t.activeColour
+	t.SetColour(*colour)
+
+	t.BorderCircle(midX, midY, radius, borderWidth)
+
+	t.SetColour(tmpC)
+}
