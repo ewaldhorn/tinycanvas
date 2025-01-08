@@ -41,10 +41,10 @@ func performDemo() {
 
 	canvas.ClearScreen(*colour.NewColour(10, 20, 180, 255))
 
-	canvas.FilledRectangle(10, 10, width-20, height-20, *colour.NewColour(0, 255, 0, 255))
+	canvas.ColourFilledRectangle(10, 10, width-20, height-20, *colour.NewColour(0, 255, 0, 255))
 	drawLines(canvas)
-	canvas.FilledRectangle(10, 10, (width/2)-10, (height/2)-10, *colour.NewColourWhite())
-	canvas.FilledRectangle(width-130, height-130, 120, 120, *colour.NewColourWhite())
+	canvas.ColourFilledRectangle(10, 10, (width/2)-10, (height/2)-10, *colour.NewColourWhite())
+	canvas.ColourFilledRectangle(width-130, height-130, 120, 120, *colour.NewColourWhite())
 
 	drawWithPixels(canvas)
 	drawRandomFilledRectangles(canvas)
@@ -69,9 +69,15 @@ func drawWithPixels(canvas *tinycanvas.TinyCanvas) {
 
 // ----------------------------------------------------------------------------
 func drawRandomFilledRectangles(canvas *tinycanvas.TinyCanvas) {
+	// down the left bottom side
+	for i := range uint8(15) {
+		canvas.SetColour(*colour.NewColour(i*3, 40+i*14, 40+i*18, colour.MAX_COLOUR_VALUE))
+		canvas.FilledRectangle(15, 10+canvas.Height()/2+int(i*17), 15, 15)
+	}
+
 	for x := range 40 {
 		for y := range 40 {
-			canvas.FilledRectangle(20+(x*4), 20+(y*4), 20, 20, *colour.NewRandomColour())
+			canvas.ColourFilledRectangle(20+(x*4), 20+(y*4), 20, 20, *colour.NewRandomColour())
 		}
 	}
 }
@@ -94,6 +100,7 @@ func drawRandomCircles(canvas *tinycanvas.TinyCanvas) {
 	}
 
 	// increasing thickness borders
+	canvas.SetColour(*colour.NewColour(64, 64, 255, 255))
 	for i := range 5 {
 		canvas.BorderCircle(100+canvas.Width()/4, canvas.Height()/4, 20+(i*6), i+1)
 	}
@@ -123,6 +130,7 @@ func drawLines(canvas *tinycanvas.TinyCanvas) {
 
 // ----------------------------------------------------------------------------
 func drawSpiral(canvas *tinycanvas.TinyCanvas) {
+	canvas.SetColour(*colour.NewColourBlack())
 	centerX, centerY := canvas.Width()/4, canvas.Height()/2+(canvas.Height()/4)
 
 	// Initial direction (0: east, 1: south, 2: west, 3: north)

@@ -5,17 +5,20 @@ import (
 )
 
 // ----------------------------------------------------------------------------
-// Draws a rectangle of the specified width and height from the top left corner
-// filled with the given colour.
-func (t *TinyCanvas) FilledRectangle(xStart, yStart, width, height int, colour colour.Colour) {
-	t.SwitchAndSaveColour(colour)
-
+func (t *TinyCanvas) FilledRectangle(xStart, yStart, width, height int) {
 	for x := range width {
 		for y := range height {
 			t.PutPixel(xStart+x, yStart+y)
 		}
 	}
+}
 
+// ----------------------------------------------------------------------------
+// Draws a rectangle of the specified width and height from the top left corner
+// filled with the given colour.
+func (t *TinyCanvas) ColourFilledRectangle(xStart, yStart, width, height int, colour colour.Colour) {
+	t.SwitchAndSaveColour(colour)
+	t.FilledRectangle(xStart, yStart, width, height)
 	t.RestoreColour()
 }
 
