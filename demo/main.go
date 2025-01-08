@@ -87,8 +87,15 @@ func drawRandomRectangles(canvas *tinycanvas.TinyCanvas) {
 
 // ----------------------------------------------------------------------------
 func drawRandomCircles(canvas *tinycanvas.TinyCanvas) {
+
+	for i := range 24 {
+		canvas.ColourFilledCircle((i*4)+50+canvas.Width()/4, 60, 40, *colour.NewColour(64+uint8(i*8), 64, 255, 255))
+	}
+
+	canvas.BorderCircle(100+canvas.Width()/4, canvas.Height()/4, 35, 3)
+
 	for i := 6; i < 60; i += 3 {
-		canvas.Circle(canvas.Width()-70, canvas.Height()-70, i, *colour.NewRandomColour())
+		canvas.ColourCircle(canvas.Width()-70, canvas.Height()-70, i, *colour.NewRandomColour())
 	}
 }
 
