@@ -26,6 +26,7 @@ type TinyCanvas struct {
 	height        int
 
 	activeColour colour.Colour
+	savedColour  colour.Colour
 }
 
 // ----------------------------------------------------------------------------
@@ -102,6 +103,18 @@ func (t *TinyCanvas) GetColour() colour.Colour {
 // SetColour sets the active colour to be used when drawing
 func (t *TinyCanvas) SetColour(p colour.Colour) {
 	t.activeColour = p
+}
+
+// ----------------------------------------------------------------------------
+// Saves the current colour
+func (t *TinyCanvas) SaveColour() {
+	t.savedColour = t.activeColour
+}
+
+// ----------------------------------------------------------------------------
+// Restores the saved colour
+func (t *TinyCanvas) RestoreColour() {
+	t.SetColour(t.savedColour)
 }
 
 // ----------------------------------------------------------------------------
