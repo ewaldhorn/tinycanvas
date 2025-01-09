@@ -4,6 +4,7 @@ import (
 	"syscall/js"
 
 	"github.com/ewaldhorn/tinycanvas/colour"
+	"github.com/ewaldhorn/tinycanvas/dom"
 )
 
 // ----------------------------------------------------------------------------
@@ -11,6 +12,7 @@ type DOMElements struct {
 	window   js.Value
 	document js.Value
 	body     js.Value
+	parent   js.Value
 }
 
 // ----------------------------------------------------------------------------
@@ -36,6 +38,7 @@ func NewTinyCanvas(width, height int) *TinyCanvas {
 	tinyCanvas.window = js.Global()
 	tinyCanvas.document = tinyCanvas.window.Get("document")
 	tinyCanvas.body = tinyCanvas.document.Get("body")
+	tinyCanvas.parent = dom.GetElementById("tinyCanvasDiv")
 
 	// make it fit the window if needed
 	if width == 0 || height == 0 {
@@ -55,7 +58,7 @@ func (t *TinyCanvas) createHTMLCanvasElement() {
 	t.canvas = t.document.Call("createElement", "canvas")
 	t.canvas.Set("height", t.height)
 	t.canvas.Set("width", t.width)
-	t.body.Call("appendChild", t.canvas)
+	t.parent.Call("appendChild", t.canvas)
 
 	t.refreshCanvasProperties()
 }

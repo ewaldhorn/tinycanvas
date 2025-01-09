@@ -12,7 +12,7 @@ import (
 func bootstrap()
 
 // -------------------------------------------------------------------- GLOBALS
-var canvas *tinycanvas.TinyCanvas
+var canvasOne, canvasTwo *tinycanvas.TinyCanvas
 
 // ----------------------------------------------------------------------------
 func main() {
@@ -20,9 +20,11 @@ func main() {
 	dom.Hide("loading")
 	dom.Show("controls")
 	bootstrap()
-	canvas = tinycanvas.NewTinyCanvas(800, 600)
+	canvasOne = tinycanvas.NewTinyCanvas(800, 600)
+	canvasTwo = tinycanvas.NewTinyCanvas(320, 200)
 
-	performDemo()
+	performDemoOnCanvasOne()
+	performDemoOnCanvasTwo()
 
 	// prevent the app for closing - it stays running for the life of the webpage
 	ch := make(chan struct{})
@@ -36,23 +38,23 @@ func setCallbacks() {
 }
 
 // ----------------------------------------------------------------------------
-func performDemo() {
-	width, height := canvas.GetDimensions()
+func performDemoOnCanvasOne() {
+	width, height := canvasOne.GetDimensions()
 
-	canvas.ClearScreen(*colour.NewColour(10, 20, 180, 255))
+	canvasOne.ClearScreen(*colour.NewColour(10, 20, 180, 255))
 
-	canvas.ColourFilledRectangle(10, 10, width-20, height-20, *colour.NewColour(0, 255, 0, 255))
-	drawLines(canvas)
-	canvas.ColourFilledRectangle(10, 10, (width/2)-10, (height/2)-10, *colour.NewColourWhite())
-	canvas.ColourFilledRectangle(width-130, height-130, 120, 120, *colour.NewColourWhite())
+	canvasOne.ColourFilledRectangle(10, 10, width-20, height-20, *colour.NewColour(0, 255, 0, 255))
+	drawLines(canvasOne)
+	canvasOne.ColourFilledRectangle(10, 10, (width/2)-10, (height/2)-10, *colour.NewColourWhite())
+	canvasOne.ColourFilledRectangle(width-130, height-130, 120, 120, *colour.NewColourWhite())
 
-	drawWithPixels(canvas)
-	drawRandomFilledRectangles(canvas)
-	drawRandomRectangles(canvas)
-	drawRandomCircles(canvas)
-	drawSpiral(canvas)
+	drawWithPixels(canvasOne)
+	drawRandomFilledRectangles(canvasOne)
+	drawRandomRectangles(canvasOne)
+	drawRandomCircles(canvasOne)
+	drawSpiral(canvasOne)
 
-	canvas.Render()
+	canvasOne.Render()
 }
 
 // ----------------------------------------------------------------------------
@@ -193,8 +195,8 @@ func setRefreshCallback() {
 	// }))
 
 	dom.AddEventListener("refreshButton", "click", func() {
-		if canvas != nil {
-			performDemo()
+		if canvasOne != nil {
+			performDemoOnCanvasOne()
 		}
 	})
 }
