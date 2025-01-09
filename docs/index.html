@@ -20,10 +20,18 @@
 
       let wasm;
 
+      let updateFunction = () => {
+        refreshCanvasTwo();
+        requestAnimationFrame(updateFunction);
+      };
+
       // ----------------------------------------------------------------------
       go.importObject.env = {
         bootstrap: function () {
           document.getElementById("title").innerHTML = getVersion();
+        },
+        animateCanvasTwo: function () {
+          updateFunction();
         },
       };
 

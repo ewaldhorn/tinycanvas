@@ -1,6 +1,7 @@
 package main
 
 import "github.com/ewaldhorn/tinycanvas/colour"
+import "syscall/js"
 
 var x, y = 0, 0
 var width, height int
@@ -9,8 +10,8 @@ var width, height int
 func performDemoOnCanvasTwo() {
 	width, height = canvasTwo.GetDimensions()
 	canvasTwo.ClearScreen(*colour.NewColour(80, 80, 180, 255))
-
-	canvasTwo.Render()
+	setRefreshCanvasTwoCallback()
+	animateCanvasTwo()
 }
 
 // ----------------------------------------------------------------------------
@@ -29,4 +30,12 @@ func updateCanvasTwo() {
 	canvasTwo.SetColour(*colour.NewRandomColour())
 	canvasTwo.PutPixel(x, y)
 	canvasTwo.Render()
+}
+
+// ----------------------------------------------------------------------------
+func setRefreshCanvasTwoCallback() {
+	js.Global().Set("refreshCanvasTwo", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		updateCanvasTwo()
+		return nil
+	}))
 }

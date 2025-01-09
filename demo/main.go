@@ -10,6 +10,9 @@ import (
 //export bootstrap
 func bootstrap()
 
+//export animateCanvasTwo
+func animateCanvasTwo()
+
 // -------------------------------------------------------------------- GLOBALS
 var canvasOne, canvasTwo *tinycanvas.TinyCanvas
 
