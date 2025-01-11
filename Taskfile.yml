@@ -32,9 +32,9 @@ tasks:
       - tinygo build -o {{.OUT_DIR}}/{{.DEMO_TARGET_FILE}} -no-debug -target wasm ./{{.DEMO_DIR}}/.
     silent: true
   test:
-    desc: Runs the unit tests
+    desc: Runs the unit tests for all the modules that have tests
     cmds:
-      - tinygo test -target wasm ./{{.COLOUR_DIR}}/...
+      - tinygo test -target wasm ./...
   lint:
     desc: --UNUSED FOR NOW-- Runs the golangci-lint tool
     cmds:
