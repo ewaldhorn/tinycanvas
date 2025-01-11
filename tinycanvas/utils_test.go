@@ -1,6 +1,9 @@
 package tinycanvas
 
-import "testing"
+import (
+	"math"
+	"testing"
+)
 
 // ----------------------------------------------------------------------------
 func Test_abs(t *testing.T) {
@@ -10,6 +13,11 @@ func Test_abs(t *testing.T) {
 		expectedVal int
 	}{
 		{"0", 0, 0},
+		{"-10", -10, 10},
+		{"-1", -1, 1},
+		{"2", 2, 2},
+		{"maxInt", math.MaxInt, math.MaxInt},
+		{"minInt", math.MinInt + 1, math.MaxInt}, // Extreme edge case
 	}
 
 	for _, test := range tests {
