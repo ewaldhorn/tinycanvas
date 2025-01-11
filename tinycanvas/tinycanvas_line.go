@@ -3,6 +3,22 @@ package tinycanvas
 import "github.com/ewaldhorn/tinycanvas/colour"
 
 // ----------------------------------------------------------------------------
+// Determine the direction of the line.
+func getSlopes(x1, y1, x2, y2 int) (int, int) {
+	slopeX := -1
+	if x1 < x2 {
+		slopeX = 1
+	}
+
+	slopeY := -1
+	if y1 < y2 {
+		slopeY = 1
+	}
+
+	return slopeX, slopeY
+}
+
+// ----------------------------------------------------------------------------
 // Draws a one pixel line from X1,Y1 to X2,Y2 in the active colour.
 // Based on https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 // TODO: Look into anti-aliasing lines
@@ -11,15 +27,7 @@ func (t *TinyCanvas) Line(x1, y1, x2, y2 int) {
 	diffX := abs(x2 - x1)
 	diffY := abs(y2 - y1)
 
-	// Determine the direction of the line.
-	slopeX := -1
-	if x1 < x2 {
-		slopeX = 1
-	}
-	slopeY := -1
-	if y1 < y2 {
-		slopeY = 1
-	}
+	slopeX, slopeY := getSlopes(x1, y1, x2, y2)
 
 	// Initialize the error value.
 	errVal := diffX - diffY
