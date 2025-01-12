@@ -1,7 +1,10 @@
 package main
 
-import "github.com/ewaldhorn/tinycanvas/colour"
-import "syscall/js"
+import (
+	"syscall/js"
+
+	"github.com/ewaldhorn/tinycanvas/colour"
+)
 
 var x, y = 0, 0
 var width, height int
@@ -16,19 +19,22 @@ func performDemoOnCanvasTwo() {
 
 // ----------------------------------------------------------------------------
 func updateCanvasTwo() {
-	x += 1
+	for range 10 {
+		x += 1
 
-	if x >= width {
-		x = 1
-		y += 1
+		if x >= width {
+			x = 1
+			y += 1
+		}
+
+		if y >= height {
+			y = 1
+		}
+
+		canvasTwo.SetColour(*colour.NewRandomColour())
+		canvasTwo.PutPixel(x, y)
 	}
 
-	if y >= height {
-		y = 1
-	}
-
-	canvasTwo.SetColour(*colour.NewRandomColour())
-	canvasTwo.PutPixel(x, y)
 	canvasTwo.Render()
 }
 

@@ -12,6 +12,8 @@ func Test_getSlopes(t *testing.T) {
 		{"0", 0, 0, 0, 0, -1, -1},
 		{"horizontal", 10, 5, 100, 5, -1, -1},
 		{"vertical", 10, 5, 10, 300, -1, 1},
+		{"left down right", 10, 10, 100, 100, -1, 1},
+		{"left down left", 100, 10, 10, 100, -1, 1},
 	}
 
 	for _, test := range tests {
