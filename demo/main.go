@@ -21,6 +21,7 @@ func main() {
 	setCallbacks()
 	dom.Hide("loading")
 	dom.Show("controls")
+	dom.Show("information")
 	bootstrap()
 	canvasOne = tinycanvas.NewTinyCanvas(800, 600)
 	canvasTwo = tinycanvas.NewTinyCanvas(320, 200)

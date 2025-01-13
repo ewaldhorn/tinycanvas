@@ -21,6 +21,10 @@ canvas {
   display: none;
 }
 
+#information {
+  display: none;
+}
+
 #tinyCanvasDiv {
   width: 100%;
   display: flex;
