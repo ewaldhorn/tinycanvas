@@ -9,9 +9,28 @@
     <h1 id="title">TinyGo and Wasm Canvas Interaction</h1>
     <div id="loading">Loading ...</div>
     <div id="controls">
-      <button id="refreshButton" type="button">Refresh</button><br /><br />
+      <button id="refreshButton" type="button">Refresh Main Canvas</button
+      ><br /><br />
     </div>
     <div id="tinyCanvasDiv"></div>
+    <footer>
+      <p>
+        TinyCanvas is a simple canvas implementation in Go, built with TinyGo.
+        It has a wasm-side canvas it can render to an HTML Canvas element on
+        demand. The idea is to have a device-agnostic "engine" that can be used
+        to render to various graphic targets. For now, only the web is
+        supported, but it could in theory work on other devices.
+      </p>
+      <p>
+        The idea was born out of the need to port some Turbo Pascal graphics
+        code to the web and in many modern graphics libraries, the concept of
+        "putpixel" is not always simple and easy to use. I needed this as well
+        as some building blocks like lines, blocks and circles, so it turned
+        into a bit of a project. Eventually I thought I'd make the code
+        available to anyone who's run into the same challenge and is better at
+        searching than I am!
+      </p>
+    </footer>
     <script type="module" defer>
       "use strict";
 
