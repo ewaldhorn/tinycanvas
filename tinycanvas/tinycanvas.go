@@ -91,7 +91,7 @@ func (t *TinyCanvas) Height() int {
 func (t *TinyCanvas) ClearScreen(p colour.Colour) {
 	for x := range t.width {
 		for y := range t.height {
-			t.PutColourPixel(x, y, p)
+			t.ColourPutPixel(x, y, p)
 		}
 	}
 }
@@ -128,9 +128,9 @@ func (t *TinyCanvas) RestoreColour() {
 }
 
 // ----------------------------------------------------------------------------
-// PutColourPixel draws a single pixel at coordinates x,y using the specified
+// ColourPutPixel draws a single pixel at coordinates x,y using the specified
 // colour. Does nothing if coordinates fall outside the canvas dimensions.
-func (t *TinyCanvas) PutColourPixel(x, y int, p colour.Colour) {
+func (t *TinyCanvas) ColourPutPixel(x, y int, p colour.Colour) {
 	offset := (x * 4) + (y * 4 * t.width)
 
 	// don't bother if we are outside our area
@@ -149,7 +149,7 @@ func (t *TinyCanvas) PutColourPixel(x, y int, p colour.Colour) {
 // Active colour can be set using SetColour(). Does nothing if coordinates
 // fall outside the canvas dimensions.
 func (t *TinyCanvas) PutPixel(x, y int) {
-	t.PutColourPixel(x, y, t.activeColour)
+	t.ColourPutPixel(x, y, t.activeColour)
 }
 
 // ----------------------------------------------------------------------------

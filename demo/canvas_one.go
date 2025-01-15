@@ -32,7 +32,7 @@ func drawWithPixels(canvas *tinycanvas.TinyCanvas) {
 	const gridSize int = 50
 	for x := 0; x < gridSize; x += 5 {
 		for y := 0; y < gridSize; y += 5 {
-			canvas.PutColourPixel(canvas.Width()/2-gridSize+x, canvas.Height()/2-gridSize+y, redPixel)
+			canvas.ColourPutPixel(canvas.Width()/2-gridSize+x, canvas.Height()/2-gridSize+y, redPixel)
 		}
 	}
 }

@@ -9,6 +9,8 @@ import (
 var x, y = 0, 0
 var width, height int
 
+const pixelsPerTick = 40
+
 // ----------------------------------------------------------------------------
 func performDemoOnCanvasTwo() {
 	width, height = canvasTwo.GetDimensions()
@@ -19,7 +21,7 @@ func performDemoOnCanvasTwo() {
 
 // ----------------------------------------------------------------------------
 func updateCanvasTwo() {
-	for range 10 {
+	for range pixelsPerTick {
 		x += 1
 
 		if x >= width {
