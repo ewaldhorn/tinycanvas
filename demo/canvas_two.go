@@ -18,7 +18,7 @@ func performDemoOnCanvasTwo() {
 	canvasTwo.ClearScreen(*colour.NewColour(80, 80, 180, 255))
 	setRefreshCanvasTwoCallback()
 
-	for i := 0; i < 40; i += 3 {
+	for i := 0; i < 40; i += 2 {
 		canvasTwo.Triangle(
 			tinycanvas.Point{X: (width / 2), Y: (height / 3) + i},
 			tinycanvas.Point{X: (width - (width / 3)) + i, Y: (height - (height / 3)) - i},
