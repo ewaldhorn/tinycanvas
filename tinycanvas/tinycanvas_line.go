@@ -63,3 +63,17 @@ func (t *TinyCanvas) ColourLine(x1, y1, x2, y2 int, colour colour.Colour) {
 	t.Line(x1, y1, x2, y2)
 	t.RestoreColour()
 }
+
+// ----------------------------------------------------------------------------
+// Draws a line between two points
+func (t *TinyCanvas) LinePoint(p1, p2 Point) {
+	t.Line(p1.X, p1.Y, p2.X, p2.Y)
+}
+
+// ----------------------------------------------------------------------------
+// Draws a line between two points, in colour
+func (t *TinyCanvas) ColourLinePoint(p1, p2 Point, colour colour.Colour) {
+	t.SwitchAndSaveColour(colour)
+	t.LinePoint(p1, p2)
+	t.RestoreColour()
+}

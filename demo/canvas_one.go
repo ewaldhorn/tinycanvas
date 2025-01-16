@@ -85,8 +85,8 @@ func drawRandomCircles(canvas *tinycanvas.TinyCanvas) {
 func drawLines(canvas *tinycanvas.TinyCanvas) {
 	canvas.SetColour(*colour.NewColour(255, 0, 0, 255))
 	w, h := canvas.GetDimensions()
-	canvas.Line(0, 0, w, h)     // top left to bottom right
-	canvas.Line(w/2, h/2, w, 0) // middle to top right
+	canvas.LinePoint(tinycanvas.Point{}, tinycanvas.Point{X: w, Y: h}) // top left to bottom right
+	canvas.Line(w/2, h/2, w, 0)                                        // middle to top right
 
 	canvas.SetColour(*colour.NewColourBlack())
 

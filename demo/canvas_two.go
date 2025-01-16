@@ -4,6 +4,7 @@ import (
 	"syscall/js"
 
 	"github.com/ewaldhorn/tinycanvas/colour"
+	"github.com/ewaldhorn/tinycanvas/tinycanvas"
 )
 
 var x, y = 0, 0
@@ -16,6 +17,15 @@ func performDemoOnCanvasTwo() {
 	width, height = canvasTwo.GetDimensions()
 	canvasTwo.ClearScreen(*colour.NewColour(80, 80, 180, 255))
 	setRefreshCanvasTwoCallback()
+
+	for i := 0; i < 40; i += 3 {
+		canvasTwo.Triangle(
+			tinycanvas.Point{X: (width / 2), Y: (height / 3) + i},
+			tinycanvas.Point{X: (width - (width / 3)) + i, Y: (height - (height / 3)) - i},
+			tinycanvas.Point{X: (width / 3) - i, Y: (height - (height / 3)) - i},
+		)
+	}
+
 	animateCanvasTwo()
 }
 
