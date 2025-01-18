@@ -21,11 +21,6 @@ tasks:
     cmds:
       - go get -u ./...
     silent: true
-  buildCanvas_unused:
-    desc: --UNUSED FOR NOW-- Builds the Canvas wasm component with TinyGo
-    cmds:
-      - tinygo build -o {{.OUT_DIR}}/{{.CANVAS_TARGET_FILE}} -no-debug -target wasm ./{{.CANVAS_DIR}}/.
-    silent: true
   build:
     desc: Builds the demo with TinyGo
     cmds:
@@ -35,11 +30,6 @@ tasks:
     desc: Runs the unit tests for all the modules that have tests
     cmds:
       - tinygo test -target wasm ./...
-  lint:
-    desc: --UNUSED FOR NOW-- Runs the golangci-lint tool
-    cmds:
-      - env GOOS=js GOARCH=wasm golangci-lint run
-    silent: true
   updateWasmExec:
     desc: Updates the wasm_exec.js file
     cmds:
@@ -50,10 +40,4 @@ tasks:
     cmds:
       - task: build
       - http-server ./{{.OUT_DIR}}/ -p 9000 -o -c-1
-    silent: true
-  coverreport:
-    desc: --UNUSED-- Shows test coverage report
-    cmds:
-      - tinygo test -target wasm -cover -coverprofile=coverage.out {{.CANVAS_DIR}}
-      - go tool cover -html=coverage.out
     silent: true

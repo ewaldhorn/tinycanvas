@@ -3,8 +3,8 @@ package tinycanvas
 import (
 	"syscall/js"
 
+	"github.com/ewaldhorn/dommie/dom"
 	"github.com/ewaldhorn/tinycanvas/colour"
-	"github.com/ewaldhorn/tinycanvas/dom"
 )
 
 // ----------------------------------------------------------------------------

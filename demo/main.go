@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/ewaldhorn/tinycanvas/dom"
+	"github.com/ewaldhorn/dommie/dom"
 	"github.com/ewaldhorn/tinycanvas/tinycanvas"
 )
 

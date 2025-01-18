@@ -1,4 +1,4 @@
-# TinyCanvas v0.0.3
+# TinyCanvas v0.0.4
 TinyGo-based in-memory canvas that can output to the HTML5 Canvas.
 
 It's not entirely based on calling the HTML5 Canvas functions directly, but rather
@@ -21,9 +21,6 @@ Contains the canvas components along with some Pixel utilities.
 
 ### Colour
 Contains colour components. I ended up extracting it because it can be useful on its own.
-
-### DOM
-Contains some DOM utilities, handy for this type of work.
 
 ### Zed
 I use <https://zed.dev/> as my main editor most of the time. There's a convenient `zed.sh`
