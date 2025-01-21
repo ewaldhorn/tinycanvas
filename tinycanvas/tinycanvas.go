@@ -78,6 +78,18 @@ func (t *TinyCanvas) refreshCanvasProperties() {
 }
 
 // ----------------------------------------------------------------------------
+// Gets a pointer to the underlying image data buffer
+func (t *TinyCanvas) GetPointerToImageData() *[]uint8 {
+	return &t.wasmImageData
+}
+
+// ----------------------------------------------------------------------------
+// Returns the size of the image buffer
+func (t *TinyCanvas) GetImageDataSize() int {
+	return len(t.wasmImageData)
+}
+
+// ----------------------------------------------------------------------------
 func (t *TinyCanvas) GetDimensions() (int, int) {
 	return t.width, t.height
 }
