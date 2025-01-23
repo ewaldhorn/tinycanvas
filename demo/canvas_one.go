@@ -26,21 +26,20 @@ func performDemoOnCanvasOne() {
 
 	// we can also directly interact with the graphics context
 	ctx := canvasOne.GetContext()
-	ctx.Call("beginPath")
-	ctx.Set("fillStyle", "red")
-	ctx.Call("arc", width-150, height/2, 50, 0, 2.75)
-	ctx.Call("fill")
+	ctx.BeginPath()
+	ctx.FillStyle("red")
+	ctx.Arc(width-150, height/2, 50, 0, 2.75)
+	ctx.Fill()
 
-	ctx.Call("beginPath")
-	ctx.Set("fillStyle", "blue")
-	ctx.Call("arc", width-170, height/2-8, 10, 0, 7)
-	ctx.Call("fill")
+	ctx.BeginPath()
+	ctx.FillStyle("blue")
+	ctx.Arc(width-170, height/2-8, 10, 0, 7)
+	ctx.Fill()
 
-	ctx.Call("beginPath")
-	ctx.Set("fillStyle", "blue")
-	ctx.Call("arc", width-140, height/2-15, 10, 0, 7)
-	ctx.Call("fill")
-
+	ctx.BeginPath()
+	ctx.FillStyle("blue")
+	ctx.Arc(width-140, height/2-15, 10, 0, 7)
+	ctx.Fill()
 }
 
 // ----------------------------------------------------------------------------

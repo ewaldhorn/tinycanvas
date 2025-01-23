@@ -1,4 +1,4 @@
-# TinyCanvas v0.0.6
+# TinyCanvas v0.0.7
 TinyGo-based in-memory canvas that can output to the HTML5 Canvas.
 
 It's not entirely based on calling the HTML5 Canvas functions directly, but rather
@@ -17,7 +17,8 @@ else finds a use for them.
 There's a small live demo at <https://ewaldhorn.github.io/tinycanvas/> if you like.
 
 ### TinyCanvas
-Contains the canvas components along with some Pixel utilities.
+Contains the canvas components along with some Pixel utilities. You can also get direct
+access to the underlying graphics context if you look carefully...
 
 ### Colour
 Contains colour components. I ended up extracting it because it can be useful on its own.
