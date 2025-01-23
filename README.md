@@ -1,4 +1,4 @@
-# TinyCanvas v0.0.7
+# TinyCanvas v0.0.8
 TinyGo-based in-memory canvas that can output to the HTML5 Canvas.
 
 It's not entirely based on calling the HTML5 Canvas functions directly, but rather

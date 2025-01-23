@@ -33,8 +33,9 @@ func (c *Context2D) Call(what string, toWhat ...any) {
 
 // --------------------------------------------------------- GRAPHICS FUNCTIONS
 // ----------------------------------------------------------------------------
-func (c *Context2D) Arc(xPos, yPos, radius, startAngle, endAngle any) {
-	c.Call("arc", xPos, yPos, radius, startAngle, endAngle)
+// arc supports a counterclockwise parameter now
+func (c *Context2D) Arc(xPos, yPos, radius, startAngle, endAngle, counterclockwise any) {
+	c.Call("arc", xPos, yPos, radius, startAngle, endAngle, counterclockwise)
 }
 
 // ----------------------------------------------------------------------------
@@ -70,6 +71,16 @@ func (c *Context2D) FillStyle(style string) {
 // ----------------------------------------------------------------------------
 func (c *Context2D) GlobalCompositeOperation(value any) {
 	c.Set("globalCompositeOperation", value)
+}
+
+// ----------------------------------------------------------------------------
+func (c *Context2D) LineTo(x, y any) {
+	c.Call("lineTo", x, y)
+}
+
+// ----------------------------------------------------------------------------
+func (c *Context2D) LineWidth(width int) {
+	c.Set("lineWidth", width)
 }
 
 // ----------------------------------------------------------------------------

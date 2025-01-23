@@ -28,17 +28,17 @@ func performDemoOnCanvasOne() {
 	ctx := canvasOne.GetContext()
 	ctx.BeginPath()
 	ctx.FillStyle("red")
-	ctx.Arc(width-150, height/2, 50, 0, 2.75)
+	ctx.Arc(width-150, height/2, 50, 0, 2.75, false)
 	ctx.Fill()
 
 	ctx.BeginPath()
 	ctx.FillStyle("blue")
-	ctx.Arc(width-170, height/2-8, 10, 0, 7)
+	ctx.Arc(width-170, height/2-8, 10, 0, 7, false)
 	ctx.Fill()
 
 	ctx.BeginPath()
 	ctx.FillStyle("blue")
-	ctx.Arc(width-140, height/2-15, 10, 0, 7)
+	ctx.Arc(width-140, height/2-15, 10, 0, 7, false)
 	ctx.Fill()
 }
 
