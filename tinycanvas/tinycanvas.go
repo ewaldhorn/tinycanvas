@@ -59,6 +59,12 @@ func NewTinyCanvas(width, height int) *TinyCanvas {
 }
 
 // ----------------------------------------------------------------------------
+// Sometimes you need access to the Context
+func (t *TinyCanvas) GetContext() js.Value {
+	return t.ctx
+}
+
+// ----------------------------------------------------------------------------
 func (t *TinyCanvas) createHTMLCanvasElement() {
 	t.canvas = t.document.Call("createElement", "canvas")
 	t.canvas.Set("height", t.height)
