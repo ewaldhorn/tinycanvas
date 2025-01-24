@@ -176,3 +176,9 @@ func (t *TinyCanvas) Render() {
 	t.imageData.Get("data").Call("set", t.imageBuffer) // copy that data to the canvas image data buffer
 	t.ctx.Call("putImageData", t.imageData, 0, 0)      // finally render the image to the canvas
 }
+
+// ----------------------------------------------------------------------------
+// Sets the inner text for the canvas
+func (t *TinyCanvas) SetInnerText(text string) {
+	t.canvas.Set("innerText", text)
+}
