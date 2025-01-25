@@ -1,2 +1,4 @@
 github.com/ewaldhorn/dommie v0.0.0-20250116222438-d5ddb3dec98f h1:lfSKO+5nHiVTG8kcx/ZbWo/xfDdbuhelKUrTFiE36Po=
 github.com/ewaldhorn/dommie v0.0.0-20250116222438-d5ddb3dec98f/go.mod h1:RH9yYkf323WiGbIT5PendwUTfECmXm1qdqDx0Um8vCY=
+github.com/ewaldhorn/dommie v0.0.2 h1:toOc6jbOOcxF11q64cqtQWtIUDPca75WMH/z8uKM+lk=
+github.com/ewaldhorn/dommie v0.0.2/go.mod h1:RH9yYkf323WiGbIT5PendwUTfECmXm1qdqDx0Um8vCY=
