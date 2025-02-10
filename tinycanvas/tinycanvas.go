@@ -84,6 +84,20 @@ func (t *TinyCanvas) GetPointerToImageData() *[]uint8 {
 }
 
 // ----------------------------------------------------------------------------
+// Makes a copy of the internal image data buffer
+func (t *TinyCanvas) GetCopyOfImageData() []uint8 {
+	var copyOfImageData = make([]uint8, len(t.wasmImageData))
+	copy(copyOfImageData, t.wasmImageData)
+	return copyOfImageData
+}
+
+// ----------------------------------------------------------------------------
+// Replaces the internal image data with the supplied image data
+func (t *TinyCanvas) ReplaceImageData(newImageData []uint8) {
+	copy(t.wasmImageData, newImageData)
+}
+
+// ----------------------------------------------------------------------------
 // Returns the size of the image buffer
 func (t *TinyCanvas) GetImageDataSize() int {
 	return len(t.wasmImageData)
