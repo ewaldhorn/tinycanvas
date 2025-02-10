@@ -162,6 +162,26 @@ func (t *TinyCanvas) ColourPutPixel(x, y int, p colour.Colour) {
 }
 
 // ----------------------------------------------------------------------------
+// GetPixel returns the colour of the pixel at a given location.
+func (t *TinyCanvas) GetPixel(x, y int) *colour.Colour {
+	offset := (x * 4) + (y * 4 * t.width)
+
+	// don't bother if we are outside our area
+	if offset < 0 || offset >= int(len(t.wasmImageData)) {
+		return nil
+	}
+
+	colour := &colour.Colour{}
+
+	colour.R = t.wasmImageData[offset]
+	colour.G = t.wasmImageData[offset+1]
+	colour.B = t.wasmImageData[offset+2]
+	colour.A = t.wasmImageData[offset+3]
+
+	return colour
+}
+
+// ----------------------------------------------------------------------------
 // PutPixel draws a single pixel at coordinates x,y using the active colour.
 // Active colour can be set using SetColour(). Does nothing if coordinates
 // fall outside the canvas dimensions.
