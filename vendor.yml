@@ -1,0 +1,11 @@
+# exclude p5.js and related files
+p5.js -linguist-vendored
+p5.sound.js -linguist-vendored
+
+d3.v7.js -linguist-vendored
+d3.v7.min.js -linguist-vendored
+
+three.js -linguist-vendored
+
+wasm_exec_tiny.js -linguist-vendored
+wasm_exec.js -linguist-vendored
