@@ -4,3 +4,5 @@ github.com/ewaldhorn/dommie v0.0.2 h1:toOc6jbOOcxF11q64cqtQWtIUDPca75WMH/z8uKM+l
 github.com/ewaldhorn/dommie v0.0.2/go.mod h1:RH9yYkf323WiGbIT5PendwUTfECmXm1qdqDx0Um8vCY=
 github.com/ewaldhorn/dommie v0.0.3 h1:kaAQQtDOsB6zcPTWUWtz+mPhcdIY2lcN3xySsdTFgIM=
 github.com/ewaldhorn/dommie v0.0.3/go.mod h1:VaiFyEmQCeqofvW7PAMZSEQP6rSeoopoTyw4tUCZzVs=
+github.com/ewaldhorn/dommie v0.0.4 h1:cwk/d4YI8EvMb8HYWKP3SUvMaNC0xf6NijfyabEdNjM=
+github.com/ewaldhorn/dommie v0.0.4/go.mod h1:VaiFyEmQCeqofvW7PAMZSEQP6rSeoopoTyw4tUCZzVs=
