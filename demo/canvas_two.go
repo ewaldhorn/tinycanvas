@@ -1,6 +1,7 @@
 package main
 
 import (
+	"math/rand"
 	"syscall/js"
 
 	"github.com/ewaldhorn/tinycanvas/colour"
@@ -10,13 +11,21 @@ import (
 var x, y = 0, 0
 var width, height int
 
-const pixelsPerTick = 40
+var pixelsPerTick = 0
+var white = *colour.NewColourWhite()
 
 // ----------------------------------------------------------------------------
 func performDemoOnCanvasTwo() {
 	width, height = canvasTwo.GetDimensions()
 	canvasTwo.ClearScreen(*colour.NewColour(80, 80, 180, 255))
 	setRefreshCanvasTwoCallback()
+	pixelsPerTick = width*rand.Intn(15) + width
+	animateCanvasTwo()
+}
+
+// ----------------------------------------------------------------------------
+func renderTriangle() {
+	canvasTwo.SetColour(white)
 
 	for i := 0; i < 40; i += 2 {
 		canvasTwo.Triangle(
@@ -25,12 +34,12 @@ func performDemoOnCanvasTwo() {
 			tinycanvas.Point{X: (width / 3) - i, Y: (height - (height / 3)) - i},
 		)
 	}
-
-	animateCanvasTwo()
 }
 
 // ----------------------------------------------------------------------------
 func updateCanvasTwo() {
+	canvasTwo.SetColour(*colour.NewRandomColour())
+
 	for range pixelsPerTick {
 		x += 1
 
@@ -41,12 +50,13 @@ func updateCanvasTwo() {
 
 		if y >= height {
 			y = 1
+			pixelsPerTick = width*rand.Intn(15) + width
 		}
 
-		canvasTwo.SetColour(*colour.NewRandomColour())
 		canvasTwo.PutPixel(x, y)
 	}
 
+	renderTriangle()
 	canvasTwo.Render()
 }
 

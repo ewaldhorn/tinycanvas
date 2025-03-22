@@ -24,7 +24,7 @@ func main() {
 	dom.Show("information")
 	bootstrap()
 	canvasOne = tinycanvas.NewTinyCanvas(800, 600)
-	canvasTwo = tinycanvas.NewTinyCanvas(320, 200)
+	canvasTwo = tinycanvas.NewTinyCanvas(330, 200)
 
 	performDemoOnCanvasOne()
 	performDemoOnCanvasTwo()
