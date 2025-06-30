@@ -162,10 +162,11 @@ func (t *TinyCanvas) RestoreColour() {
 // ColourPutPixel draws a single pixel at coordinates x,y using the specified
 // colour. Does nothing if coordinates fall outside the canvas dimensions.
 func (t *TinyCanvas) ColourPutPixel(x, y int, p colour.Colour) {
-	offset := (x * 4) + (y * 4 * t.width)
+	const bytesPerPixel = 4
+	offset := (x * bytesPerPixel) + (y * bytesPerPixel * t.width)
 
 	// don't bother if we are outside our area
-	if offset < 0 || offset >= int(len(t.wasmImageData)) {
+	if offset < 0 || offset+bytesPerPixel >= int(len(t.wasmImageData)) {
 		return
 	}
 

@@ -36,8 +36,8 @@ tasks:
       - cp $(tinygo env TINYGOROOT)/targets/wasm_exec.js ./{{.OUT_DIR}}/wasm_exec_tiny.js
     silent: true
   run:
-    desc: Builds and runs the project
+    desc: Builds and runs the project - will not open a browser window anymore
     cmds:
       - task: build
-      - http-server ./{{.OUT_DIR}}/ -p 9000 -o -c-1
+      - http-server ./{{.OUT_DIR}}/ -p 9000 -c-1
     silent: true

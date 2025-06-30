@@ -283,12 +283,12 @@
 					},
 				},
 				gojs: {
-					// func ticks() float64
+					// func ticks() int64
 					"runtime.ticks": () => {
-						return timeOrigin + performance.now();
+						return BigInt((timeOrigin + performance.now()) * 1e6);
 					},
 
-					// func sleepTicks(timeout float64)
+					// func sleepTicks(timeout int64)
 					"runtime.sleepTicks": (timeout) => {
 						// Do not sleep, only reactivate scheduler after the given timeout.
 						setTimeout(() => {
@@ -298,7 +298,7 @@
 							} catch (e) {
 								if (e !== wasmExit) throw e;
 							}
-						}, timeout);
+						}, Number(timeout)/1e6);
 					},
 
 					// func finalizeRef(v ref)
