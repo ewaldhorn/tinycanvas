@@ -29,7 +29,7 @@ func NewColourWhite() *Colour {
 
 // ----------------------------------------------------------------------------
 func NewColourBlack() *Colour {
-	return &Colour{A: MAX_COLOUR_VALUE}
+	return &Colour{R: 0, G: 0, B: 0, A: MAX_COLOUR_VALUE}
 }
 
 // ----------------------------------------------------------------------------
@@ -54,7 +54,7 @@ func NewRandomColour() *Colour {
 // Built using information from https://en.wikipedia.org/wiki/Grayscale
 // and https://stackoverflow.com/questions/42516203/converting-rgba-image-to-grayscale-golang
 func (c *Colour) ConvertToGrayscale() {
-	shadeOfGray := uint8((0.299*(float64(c.R)) + 0.587*(float64(c.G)) + 0.144*(float64(c.B))) / 256)
+	shadeOfGray := uint8(0.299*(float64(c.R)) + 0.587*(float64(c.G)) + 0.114*(float64(c.B)))
 
 	c.R = shadeOfGray
 	c.G = shadeOfGray
