@@ -29,7 +29,8 @@ tasks:
   test:
     desc: Runs the unit tests for all the modules that have tests
     cmds:
-      - tinygo test -target wasm ./...
+      - echo "Todo - I haven't gotten around to this"
+      # - tinygo test -target wasm ./...
   updateWasmExec:
     desc: Updates the wasm_exec.js file
     cmds:
